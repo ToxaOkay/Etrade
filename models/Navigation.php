@@ -18,23 +18,12 @@ class Navigation extends CommonST{
     }
     private function sortArrayByParrent($oArray,$phname = null) {
         $res = null;
-        if ($phname == null) {
-            foreach ($oArray as $value) {
-                if ($value->getParrentId() == null) {
-                    $res[$value->getName()] = $value;
-                    $res[$value->getName()]->setChild($this->sortArrayByParrent($oArray,$value->getId()));
-                    var_dump($res);
-                }
-            }
-        } else{
-            foreach ($oArray as $value){
+                    foreach ($oArray as $value){
                 if ($value->getParrentId() == $phname) {
                     $res[$value->getName()] = $value;
                     $res[$value->getName()]->setChild($this->sortArrayByParrent($oArray,$value->getId()));
                 }
             }
-
-        }
         return $res;
     }
 
